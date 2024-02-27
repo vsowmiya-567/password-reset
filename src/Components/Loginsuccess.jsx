@@ -8,7 +8,7 @@ const Loginsuccess = () => {
 
     const navigate = useNavigate()
 
-    const handleSubmit = ()=>{
+    const handleClick = () => {
         navigate('/')
     }
 
@@ -16,13 +16,22 @@ const Loginsuccess = () => {
 
     return (
         <div>
-            <h2 style={{textAlign:'center',height:'100vh',width:'100%',backgroundColor:'white'}}>Signin Successfully! 😊</h2>
-            
-                <Button variant="primary" onClick={handleSubmit} className='btn home'><b>Home</b></Button>
-           
+            <h2 style={{
+                textAlign: 'center', height: '100vh', width: '100%',
+                backgroundColor: 'white'
+            }}>Signin Successfully! 😊
+            <div>
+
+            <Button variant="primary" onClick={handleClick}
+                className='btnhome'><b>Home</b>
+            </Button>
+            </div>
+            </h2>
+
+
         </div>
-        
-            
+
+
     );
 };
 

@@ -26,45 +26,51 @@ const ConfirmPassword = () => {
             
         }
 
-        axios.post(`http://localhost:5000/reset-password/${id}/${token}`,
+        axios.post(`http://localhost:5000/reset-passwords/${id}/${token}`,
             { newPassword })
-            .then(res => {
-                if (res.data) {
+            .then(res =>{
+            
+                if(res.data.status === 'true'){
+                    alert("password updated")
                     navigate('/signin')
                 }
-            })
+            } 
+            )
             .catch(err => console.log(err))
+            
+        }
+        return (
+            <div className='box1'>
+                <form className='form'>
+                    <h3 className='title'>Confirm Password</h3>
+                    <div className='mb-2'>
+                        <label htmlFor="password" className='content'>Newpassword</label>
+    
+                        <input type="email"
+                            placeholder='Enter Your Password' className='form-control inpbox'
+                            onChange={(e) => SetNewPassword(e.target.value)}
+                            value={newPassword.newPassword}
+                        />
+                        {errormsg.length > 0 && (
+                            <div style={{ marginLeft: '70px', marginBottom: '10px', color: 'red' }}>
+                                {errormsg}
+                            </div>
+                        )}
+    
+                    </div>
+    
+                    <div>
+                        <Button onClick = {(e)=>handleSubmit(e)}
+                            type='submit' variant="primary" className='btn'><b>Set Password</b>
+                        </Button>
+                    </div>
+                </form>
+            </div>
+        );
+    };
+    
+    export default ConfirmPassword;
 
-    }
+                
+                
 
-    return (
-        <div className='box1'>
-            <form className='form'>
-                <h3 className='title'>Confirm Password</h3>
-                <div className='mb-2'>
-                    <label htmlFor="password" className='content'>Newpassword</label>
-
-                    <input type="email"
-                        placeholder='Enter Your Password' className='form-control inpbox'
-                        onChange={(e) => SetNewPassword(e.target.value)}
-                        value={newPassword.newPassword}
-                    />
-                    {errormsg.length > 0 && (
-                        <div style={{ marginLeft: '70px', marginBottom: '10px', color: 'red' }}>
-                            {errormsg}
-                        </div>
-                    )}
-
-                </div>
-
-                <div>
-                    <Button onClick = {()=>{handleSubmit}}
-                        type='submit' variant="primary" className='btn'><b>Set Password</b>
-                    </Button>
-                </div>
-            </form>
-        </div>
-    );
-};
-
-export default ConfirmPassword;

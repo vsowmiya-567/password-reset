@@ -63,9 +63,9 @@ const Signup = () => {
 
                 <Form>
                     <Form.Group className="mb-3 name sign" controlId="formGroupName">
-                        <Form.Label className='content'>User Name</Form.Label>
+                     <Form.Label className='content'>User Name</Form.Label>
                         <Form.Control type="text" className='inpbox' 
-                        autoComplete='off' placeholder="Enter Your Name" 
+                        autoComplete='off' placeholder= "Enter Your Name" 
                         onChange={(e)=>SetUsername(e.target.value)} 
                         />
                     </Form.Group>

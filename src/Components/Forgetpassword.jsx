@@ -10,6 +10,8 @@ const Forgetpassword = () => {
 
     const [email, SetEmail] = useState('')
     const [errormsg, setErrorMsg] = useState('')
+    const [message,setMessage] = useState('')
+
 
     const handleSubmit =(e)=>{
         
@@ -19,11 +21,19 @@ const Forgetpassword = () => {
         }
 
         axios.post('http://localhost:5000/forget-password',{email})
-        .then(res=>console.log(res.data))
-        .catch(err=>console.log(err))
-        alert("Reset link is sent to your Mail,Please check it")
-        SetEmail(initial)
-        // console.log('val',res.data.data);
+        .then(res=>{
+            if(res.data.status === 'true'){
+                alert("Reset link is sent to your Mail,Please check it")
+                SetEmail(initial)
+            }
+        })
+        .catch(err=>{
+            
+            setMessage(err.response.data.message)
+            console.log(err)
+
+        })
+        
     }
     
         return (
@@ -38,6 +48,7 @@ const Forgetpassword = () => {
                         onChange={(e)=>SetEmail(e.target.value)}
                          value={email.email}
                         />
+                        {message.length > 0 && (<div style={{marginLeft:'70px',marginTop:'8px',color:'red'}}>{message}</div>)}
                         {errormsg.length > 0 && (<div style={{marginLeft:'70px',marginBottom:'15px',color:'red'}}>{errormsg}</div>)}
 
                     </div>
